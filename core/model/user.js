@@ -1,31 +1,31 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require('../../../db/config');
+const sequelize = require('../../db/config');
 
 const user = sequelize.define(
     "user",
     {
         uuid:{
-            type: DataTypes.STRING_TYPE,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         name:{
-            type: DataTypes.STRING_TYPE,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         lastname:{
-            type: DataTypes.STRING_TYPE,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         role_id:{
-            type: DataTypes.INT,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         email:{
-            type: DataTypes.STRING_TYPE,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         password:{
-            type: DataTypes.STRING_TYPE,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         created_at:{
@@ -33,11 +33,12 @@ const user = sequelize.define(
             allowNull: false,
         },
         status:{
-            type: DataTypes.INT,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
     },
     {
+        timestamps: false,
         tableName: "User",
         underscored: true,
     }
