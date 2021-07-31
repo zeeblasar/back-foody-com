@@ -1,24 +1,22 @@
-const users = [
-    {
-        id: 1,
-        document: 1128056852,
-        name: "Zee Mairon",
-        lastname: "Blanco Sarmiento",
-        phone: 3137613695,
-        email: "zblanco.sarmiento@gmail.com",
-        password: 123456,
-    },
-    {
-        id: 2,
-        document: 32936033,
-        name: "Paola Regina",
-        lastname: "Tilve Contreras",
-        phone: 3002546103,
-        email: "paolatilve@gmail.com",
-        password: 654321,
-    }
+const { Sequelize } = require("sequelize");
 
-]
+const { DB_USER, DB_PASS, DB_HOST, DB_NAME, DB_PORT } = process.env;
 
+const conString = `mysql://${DB_USER}${
+    DB_PASS && `:${DB_PASS}`
+}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 
-module.exports = { users };
+const instanciaSequelize = new Sequelize(conString, {
+    operatorAliases: false,
+});
+
+instanciaSequelize
+    .authenticate()
+    .then(() => {
+        console.log("conexion con db exitosa");
+    })
+    .catch((e) => {
+        console.log(e.message);
+    });
+
+module.exports = instanciaSequelize;
